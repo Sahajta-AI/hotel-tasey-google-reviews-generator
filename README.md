@@ -34,11 +34,13 @@ No server, no database and no API keys. Everything runs in the guest's browser.
 
 ## Google link
 
-`app.js` → `GOOGLE_REVIEW_URL` opens the "write a review" box directly:
+`app.js` → `GOOGLE_REVIEW_URL` is Google's own "Ask for reviews" link from the hotel's Business Profile:
 
-`https://search.google.com/local/writereview?placeid=ChIJP3B1WyqxbTkROyWe-jVb9fY`
+`https://g.page/r/CTslnvo1W_X2EBM/review`
 
-The Place ID belongs to "The Tasey hotel", Sisiyawas (Google listing `/g/11z_0qjm62`). If the hotel owner shares the "Ask for reviews" link from Google Business Profile (`g.page/r/.../review`), you can put that link here instead.
+It opens the "write a review" box for "The Tasey hotel", Sisiyawas (Place ID `ChIJP3B1WyqxbTkROyWe-jVb9fY`, listing `/g/11z_0qjm62`).
+
+Printed QR codes point to https://reviews.thetaseyhotel.com, not to this link. A QR code with the Google link skips the review page, so guests would get an empty box and no review ideas.
 
 ## Run it on your computer
 

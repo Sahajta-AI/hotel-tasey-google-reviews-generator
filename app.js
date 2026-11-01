@@ -1,10 +1,9 @@
 import { TOPICS } from "./reviews.js";
 import { suggest } from "./generator.js";
 
-// Google "write a review" box for The Tasey hotel (Place ID from its Google listing).
-// To swap it, paste the "Ask for reviews" link from Google Business Profile here.
-const GOOGLE_REVIEW_URL =
-  "https://search.google.com/local/writereview?placeid=ChIJP3B1WyqxbTkROyWe-jVb9fY";
+// Google's own "Ask for reviews" link from the hotel's Business Profile. It opens
+// the "write a review" box for The Tasey hotel (Place ID ChIJP3B1WyqxbTkROyWe-jVb9fY).
+const GOOGLE_REVIEW_URL = "https://g.page/r/CTslnvo1W_X2EBM/review";
 const WHATSAPP_NUMBER = "917073873670";
 const STAR_LABELS = ["", "Very bad", "Not good", "Okay", "Good", "Loved it"];
 const ISSUES = ["Room", "Cleanliness", "Food", "Staff", "Noise", "Check-in", "Other"];
