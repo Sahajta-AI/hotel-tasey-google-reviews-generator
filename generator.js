@@ -4,6 +4,8 @@ import { BANK, PARTS } from "./reviews.js";
 
 const rand = (n) => Math.floor(Math.random() * n);
 const TRIP_OPENER = /^(stayed|visited|stopped|went|came|our first)/i;
+// Only true for some guests, so used only when the guest picks them.
+const NICHE = ["events", "safari"];
 const pick = (arr) => arr[rand(arr.length)];
 
 export function shuffle(list) {
@@ -19,7 +21,8 @@ export function shuffle(list) {
 export function compose(stars, topics = []) {
   const parts = PARTS[stars];
   const usable = topics.filter((t) => parts.topic[t]);
-  const pool = shuffle(usable.length ? usable : Object.keys(parts.topic));
+  const general = Object.keys(parts.topic).filter((t) => !NICHE.includes(t));
+  const pool = shuffle(usable.length ? usable : general);
   const count = Math.min(pool.length, 1 + rand(3));
   const lines = pool.slice(0, count).map((t) => pick(parts.topic[t]));
 
@@ -63,10 +66,11 @@ export function suggest(stars, topics = [], seen = new Set(), count = 5) {
     tags: tags.split(" ").filter(Boolean),
   }));
 
-  const matches = (r) => !topics.length || r.tags.some((t) => topics.includes(t));
+  const fits = (r) => !r.tags.some((t) => NICHE.includes(t) && !topics.includes(t));
+  const matches = (r) => fits(r) && (!topics.length || r.tags.some((t) => topics.includes(t)));
   let candidates = bank.filter((r) => matches(r) && !seen.has(r.id));
-  if (candidates.length < 2) candidates = bank.filter((r) => !seen.has(r.id));
-  if (candidates.length < 2) candidates = bank;
+  if (candidates.length < 2) candidates = bank.filter((r) => fits(r) && !seen.has(r.id));
+  if (candidates.length < 2) candidates = bank.filter(fits);
 
   // No sentence may appear in two ideas of the same set.
   const ideas = [];
