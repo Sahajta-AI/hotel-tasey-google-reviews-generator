@@ -1,0 +1,9 @@
+{
+  "name": "hotel-tasey-google-reviews-generator",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check-reviews.mjs",
+    "dev": "npx --yes serve -l 4321 ."
+  }
+}
