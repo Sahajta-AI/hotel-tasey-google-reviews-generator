@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review QR Standee</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Manrope:wght@500;600;700;800&display=swap">
+  <style>
+    /* Table standee, like the QR cards at shop counters. A6 by default
+       (105 x 148 mm, close to 4 x 6 inch); add ?size=a5 for a larger card. */
+    :root {
+      --u: 1mm;
+      --navy: #011a51; --ink: #0f1b3d; --muted: #5f6368; --gold: #f0d28c;
+      --g-blue: #4285f4; --g-red: #ea4335; --g-yellow: #fbbc05; --g-green: #34a853;
+      --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      --serif: "Cormorant Garamond", Georgia, serif;
+    }
+    .a5 { --u: 1.4142mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #e7e1d6; color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    .tools { display: flex; gap: 10px; justify-content: center; padding: 16px; font: 600 14px var(--sans); }
+    .tools a, .tools button { padding: 10px 16px; border-radius: 10px; border: 1px solid #d6cdbb; background: #fff; color: var(--navy); text-decoration: none; cursor: pointer; font: inherit; }
+    .tools button { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+    .card {
+      width: calc(var(--u) * 105); height: calc(var(--u) * 148);
+      margin: 0 auto 32px;
+      display: flex; flex-direction: column;
+      background: #fff;
+      border-radius: calc(var(--u) * 5);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(1, 26, 81, .22);
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+
+    /* Hotel band */
+    .band { background: var(--navy); color: #fff; padding: calc(var(--u) * 4) calc(var(--u) * 6) calc(var(--u) * 3.5); display: flex; align-items: center; gap: calc(var(--u) * 3.5); }
+    .band img { width: calc(var(--u) * 12); height: calc(var(--u) * 12); border-radius: calc(var(--u) * 2.6); background: #fff; }
+    .band .name { margin: 0; font: 600 calc(var(--u) * 6.4) / 1 var(--serif); letter-spacing: .01em; }
+    .band .place { margin: calc(var(--u) * 1.3) 0 0; font-size: calc(var(--u) * 2.4); font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+    .stripe { display: flex; height: calc(var(--u) * 1.6); }
+    .stripe span { flex: 1; }
+
+    /* Headline */
+    .body { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: calc(var(--u) * 4) calc(var(--u) * 7) calc(var(--u) * 3); }
+    .kicker { margin: 0; font-size: calc(var(--u) * 4.4); font-weight: 700; color: var(--ink); }
+    .google { margin: calc(var(--u) * .2) 0 0; font-size: calc(var(--u) * 11); font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+    .stars { display: flex; gap: calc(var(--u) * 1.4); margin-top: calc(var(--u) * 2); }
+    .stars svg { width: calc(var(--u) * 6); height: calc(var(--u) * 6); fill: var(--g-yellow); }
+
+    /* QR in a four-colour frame */
+    .frame {
+      margin-top: calc(var(--u) * 3.5);
+      padding: calc(var(--u) * 1.4);
+      border-radius: calc(var(--u) * 5);
+      background: conic-gradient(from -45deg, var(--g-blue) 0 25%, var(--g-red) 0 50%, var(--g-yellow) 0 75%, var(--g-green) 0);
+    }
+    .frame-inner { background: #fff; border-radius: calc(var(--u) * 3.8); padding: calc(var(--u) * .6); }
+    .frame img { display: block; width: calc(var(--u) * 48); height: calc(var(--u) * 48); }
+    .scan { margin: calc(var(--u) * 3) 0 0; font-size: calc(var(--u) * 4); font-weight: 800; color: var(--ink); }
+    .scan small { display: block; margin-top: calc(var(--u) * .8); font-size: calc(var(--u) * 2.9); font-weight: 600; color: var(--muted); }
+
+    /* Steps */
+    .steps { display: flex; justify-content: center; align-items: flex-start; gap: calc(var(--u) * 2); margin-top: auto; padding-top: calc(var(--u) * 2.5); }
+    .step { width: calc(var(--u) * 22); font-size: calc(var(--u) * 2.5); font-weight: 600; line-height: 1.3; color: var(--ink); }
+    .step i { display: grid; place-items: center; width: calc(var(--u) * 7.5); height: calc(var(--u) * 7.5); margin: 0 auto calc(var(--u) * 1.3); border-radius: 50%; font-style: normal; color: #fff; font-size: calc(var(--u) * 3.6); font-weight: 800; }
+    .arrow { margin-top: calc(var(--u) * 2.2); color: #bdc1c6; font-size: calc(var(--u) * 3.6); }
+
+    .foot { display: flex; justify-content: space-between; align-items: center; padding: calc(var(--u) * 2.6) calc(var(--u) * 6); background: #f8f9fa; border-top: 1px solid #eceff1; font-size: calc(var(--u) * 2.5); font-weight: 600; color: var(--muted); }
+    .foot strong { color: var(--navy); font-weight: 800; }
+
+    @media print {
+      @page { size: 105mm 148mm; margin: 0; }
+      body { background: #fff; }
+      .tools { display: none; }
+      .card { margin: 0; border-radius: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs><symbol id="star" viewBox="0 0 24 24"><path d="M12 2.8l2.75 5.6 6.15.9-4.45 4.34 1.05 6.12L12 16.9l-5.5 2.86 1.05-6.12L3.1 9.3l6.15-.9z"/></symbol></defs>
+  </svg>
+
+  <div class="tools">
+    <a href="?size=a6" id="a6">A6 card</a>
+    <a href="?size=a5" id="a5">A5 card</a>
+    <button type="button" onclick="window.print()">Print</button>
+  </div>
+
+  <div class="card">
+    <div class="band">
+      <img src="logo.png" alt="The Tasey Hotel logo">
+      <div>
+        <p class="name">The Tasey Hotel</p>
+        <p class="place">Amer &middot; Jaipur &middot; Pure veg</p>
+      </div>
+    </div>
+    <div class="stripe" aria-hidden="true">
+      <span style="background:var(--g-blue)"></span><span style="background:var(--g-red)"></span><span style="background:var(--g-yellow)"></span><span style="background:var(--g-green)"></span>
+    </div>
+
+    <div class="body">
+      <p class="kicker">Enjoyed your visit? Review us on</p>
+      <p class="google" aria-label="Google">
+        <span style="color:var(--g-blue)">G</span><span style="color:var(--g-red)">o</span><span style="color:var(--g-yellow)">o</span><span style="color:var(--g-blue)">g</span><span style="color:var(--g-green)">l</span><span style="color:var(--g-red)">e</span>
+      </p>
+      <div class="stars" aria-hidden="true">
+        <svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg>
+      </div>
+
+      <div class="frame"><div class="frame-inner">
+        <img src="print/tasey-review-qr.svg" alt="QR code to review The Tasey Hotel on Google">
+      </div></div>
+      <p class="scan">Scan with your phone camera<small>No app needed. Takes under a minute.</small></p>
+
+      <div class="steps">
+        <div class="step"><i style="background:var(--g-blue)">1</i>Tap the stars</div>
+        <span class="arrow" aria-hidden="true">&rsaquo;</span>
+        <div class="step"><i style="background:var(--g-red)">2</i>Pick a ready review</div>
+        <span class="arrow" aria-hidden="true">&rsaquo;</span>
+        <div class="step"><i style="background:var(--g-green)">3</i>Paste on Google and post</div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <span>reviews.thetaseyhotel.com</span>
+      <strong>Thank you!</strong>
+    </div>
+  </div>
+
+  <script>
+    const size = new URLSearchParams(location.search).get("size");
+    if (size === "a5") {
+      document.documentElement.classList.add("a5");
+      const s = document.createElement("style");
+      s.textContent = "@media print { @page { size: 148mm 210mm; } }";
+      document.head.appendChild(s);
+    }
+  </script>
+</body>
+</html>

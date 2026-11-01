@@ -111,3 +111,18 @@ The ideas follow what the guest taps on "What stood out?":
 - Four or more picked: every idea mentions at least two (usually three), and the 5 ideas together cover all of them.
 - A hand-written review only shows if its text names the picked topics (`TOPIC_WORDS` in `generator.js`).
 - `npm run check` tests 3,000 guests with random picks and fails if any idea drifts off their topics.
+
+## Print files
+
+Ready to send to a printer, in `print/`. Every QR code opens https://reviews.thetaseyhotel.com/ (checked with the macOS QR reader on each PDF).
+
+| File | Use |
+| --- | --- |
+| `tasey-standee-A6.pdf` | Table card, 105 x 148 mm (about 4 x 6 inch), like the QR cards at shop counters. For tables, reception and room desks |
+| `tasey-standee-A5.pdf` | Same card, larger, 148 x 210 mm |
+| `tasey-poster-A5.pdf` | Wall poster with the hotel photo |
+| `tasey-review-qr.svg`, `.png` | The QR code alone, for a designer or other print |
+
+Print the cards on 300 gsm card or as an acrylic standee. Do not make the QR code smaller than 3 x 3 cm. The live pages are `/standee.html` and `/poster.html`.
+
+Do not print until https://reviews.thetaseyhotel.com opens on a phone.
