@@ -62,6 +62,7 @@ h1:focus, h2:focus { outline: none; }
     margin: 32px auto;
     border-radius: 28px;
     overflow: hidden;
+    overflow: clip; /* "hidden" would stop the bottom button from sticking */
     box-shadow: 0 30px 80px rgba(0, 10, 40, .45);
   }
   .screen { min-height: 760px; }

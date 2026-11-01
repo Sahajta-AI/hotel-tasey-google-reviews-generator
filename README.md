@@ -18,7 +18,7 @@ No server, no database and no API keys. Everything runs in the guest's browser.
 | --- | --- |
 | `index.html`, `style.css`, `app.js` | The review page: one screen per step |
 | `img/facade.jpg` | The hotel lit up at night (the main photo on thetaseyhotel.com), used on the first screen and the poster |
-| `reviews.js` | All review text: 176 five-star and 86 four-star reviews written by hand (35 about the pure veg kitchen, 21 about Jain food), plus openers, topic lines and closers |
+| `reviews.js` | All review text: 167 five-star and 81 four-star reviews written by hand (35 about the pure veg kitchen, 21 about Jain food). Reviews talk about what the hotel offers; nearby sights only appear as landmarks, never as activities, plus openers, topic lines and closers |
 | `generator.js` | Picks 5 ideas for each guest: 2 hand-written ones and 3 new ones built from the parts |
 | `poster.html` | Printable A5 poster with the QR code for reception and rooms |
 | `scripts/check-reviews.mjs` | Checks the text for AI-sounding words and near copies, and counts repeats over 500 test guests |
