@@ -85,3 +85,13 @@ Many people only come to eat. The home screen says "How was your visit?", and th
 - "I came to eat" hides the Rooms topic and filters out every line about rooms or staying over. About 95% of ideas for diners are about the food or the rooftop cafe.
 - Reviews written by diners ("Only came to eat, and it was worth it") never show to guests who stayed.
 - `npm run check` tests 1,000 diners and fails if any idea mentions rooms or staying.
+
+## Picked topics
+
+The ideas follow what the guest taps on "What stood out?":
+
+- One topic picked: every idea mentions it. Half of them add one everyday detail too, so guests who pick the same topic don't get the same text.
+- Two or three picked: every idea mentions all of them.
+- Four or more picked: every idea mentions at least two (usually three), and the 5 ideas together cover all of them.
+- A hand-written review only shows if its text names the picked topics (`TOPIC_WORDS` in `generator.js`).
+- `npm run check` tests 3,000 guests with random picks and fails if any idea drifts off their topics.

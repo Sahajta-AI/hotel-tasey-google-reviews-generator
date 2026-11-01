@@ -1,7 +1,8 @@
 // Checks the review text: counts, AI-sounding words, near-duplicates,
 // and how often 500 simulated guests would see the same text.
 import { BANK, PARTS } from "../reviews.js";
-import { suggest } from "../generator.js";
+import { suggest, TOPIC_WORDS } from "../generator.js";
+import { TOPICS, PARTS as ALL_PARTS } from "../reviews.js";
 
 const BANNED = /\b(delve|tapestry|vibrant|crucial|pivotal|seamless(ly)?|robust|nuanced|holistic|elevate[sd]?|unforgettable|testament|nestled|boasts?|exquisite|impeccable|hidden treasure|truly|indeed|moreover|furthermore|additionally|experience the|culinary|ambiance)\b|—/i;
 let problems = 0;
@@ -60,5 +61,45 @@ for (const s of [5, 4]) {
   console.log(`${s} stars, 500 diners: ${posted.size} different texts, ${repeats} repeats`);
 }
 
+// Every topic line must name its topic, so the topic test below means something.
+for (const st of [5, 4]) {
+  for (const [key, lines] of Object.entries(ALL_PARTS[st].topic)) {
+    for (const l of lines) if (!TOPIC_WORDS[key].test(l)) { console.log(`Line does not mention ${key}:`, l); problems++; }
+  }
+}
+
+// Ideas must follow the topics a guest picks: with one topic, every idea
+// mentions it; with more, every idea mentions at least two and each set
+// covers all of them.
+const keys = TOPICS.map((t) => t.key);
+for (const visit of ["stay", "dine"]) {
+  let ideasN = 0, miss = 0, setsMissing = 0;
+  for (let g = 0; g < 1500; g++) {
+    const pool = keys.filter((k) => !(visit === "dine" && k === "rooms"));
+    const size = 1 + Math.floor(Math.random() * 4);
+    const topics = shuffleList(pool).slice(0, size);
+    const ideas = suggest(Math.random() < 0.7 ? 5 : 4, topics, new Set(), 5, visit);
+    const covered = new Set();
+    for (const i of ideas) {
+      ideasN++;
+      const hits = topics.filter((t) => TOPIC_WORDS[t].test(i.text));
+      hits.forEach((h) => covered.add(h));
+      if (hits.length < Math.min(topics.length, 2)) miss++;
+    }
+    if (covered.size < topics.length) setsMissing++;
+  }
+  console.log(`Topics (${visit}): ${miss} of ${ideasN} ideas off-topic, ${setsMissing} sets missing a picked topic`);
+  if (miss > ideasN * 0.01 || setsMissing) problems++;
+}
+
 console.log(problems ? `${problems} problem(s)` : "No problems found");
 process.exit(problems ? 1 : 0);
+
+function shuffleList(list) {
+  const a = [...list];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
