@@ -23,7 +23,7 @@ const ICONS = {
   clean: '<path d="M11 3l1.8 4.7L17.5 9.5l-4.7 1.8L11 16l-1.8-4.7L4.5 9.5l4.7-1.8z"/><path d="M18 14v6"/><path d="M15 17h6"/>',
   views: '<path d="M2 20l6.5-10 4.5 6.5 3-4 6 7.5z"/><circle cx="17" cy="6" r="2"/>',
   location: '<path d="M19 10c0 5.5-7 11-7 11s-7-5.5-7-11a7 7 0 0 1 14 0z"/><circle cx="12" cy="10" r="2.6"/>',
-  events: '<path d="M8 21h8"/><path d="M12 15v6"/><path d="M7 3h10l-.6 6.2A4.4 4.4 0 0 1 12 13a4.4 4.4 0 0 1-4.4-3.8z"/><path d="M7.4 7h9.2"/>',
+  events: '<path d="M12 3a6 6 0 0 0-6 6c0 4 3.5 7 6 8 2.5-1 6-4 6-8a6 6 0 0 0-6-6z"/><path d="M11 17h2l-1 2z"/><path d="M12 19c0 1.5-1.5 2-1.5 3"/>',
   value: '<path d="M6 4h12"/><path d="M6 9h12"/><path d="M6 14h3c6 0 6-10 0-10"/><path d="M6 14l8 7"/>',
   family: '<circle cx="9" cy="7" r="3.2"/><path d="M3 20v-1.5A4.5 4.5 0 0 1 7.5 14h3a4.5 4.5 0 0 1 4.5 4.5V20"/><path d="M16 4.3a3.2 3.2 0 0 1 0 5.9"/><path d="M21 20v-1.5a4.5 4.5 0 0 0-3-4.2"/>',
 };
