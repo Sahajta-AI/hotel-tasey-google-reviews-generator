@@ -13,8 +13,12 @@
 // North Indian curries, tandoori breads), Jhumka rooftop cafe and pool,
 // banquet hall, Nahargarh Biological Park across the road, Amer Fort ~5 km,
 // Jal Mahal, Jhalana leopard safari ~25 min, Delhi-Jaipur highway.
+//
+// The kitchen is pure vegetarian, and no other hotel or restaurant nearby is.
+// This is the hotel's main highlight. Never mention meat, fish or eggs.
 
 export const TOPICS = [
+  { key: "veg", label: "Pure veg food" },
   { key: "rooms", label: "Rooms" },
   { key: "food", label: "Food" },
   { key: "pool", label: "Rooftop pool" },
@@ -29,6 +33,31 @@ export const TOPICS = [
 
 export const BANK = {
   5: [
+    ["Pure veg hotel, which is hard to find around Amer. We could order anything without asking twice.", "veg food location"],
+    ["Finally a pure vegetarian place near Amer fort. My parents were so relieved.", "veg family location"],
+    ["The whole kitchen is pure veg, so my mother ate here happily at every meal. Food was really tasty too.", "veg food family"],
+    ["Being pure veg is a big plus. Every other place on this stretch serves non-veg.", "veg location"],
+    ["We are strict vegetarians and this was the only hotel nearby with a pure veg kitchen. Thali was excellent.", "veg food"],
+    ["Pure veg and still so many options. Dal baati churma, paneer, tandoori rotis, all very good.", "veg food"],
+    ["Loved that it's a fully vegetarian hotel. Felt very comfortable eating here with family.", "veg family"],
+    ["Pure veg food that actually tastes great. The Rajasthani thali is a must.", "veg food"],
+    ["Booked this mainly because it is pure veg. Rooms and staff turned out great as well.", "veg rooms staff"],
+    ["For vegetarian travellers this is the best option near Amer. Clean kitchen, fresh food.", "veg food clean"],
+    ["Pure vegetarian restaurant with proper Rajasthani taste. Haldi is worth a visit even if you're not staying.", "veg food"],
+    ["Nice to find a pure veg place on the Delhi-Jaipur highway. Stopped for lunch and ended up staying the night.", "veg location"],
+    ["Our whole group is vegetarian, so a pure veg hotel made the trip so easy.", "veg"],
+    ["Pure veg, spotless and peaceful. Exactly what our family was looking for.", "veg clean family"],
+    ["100% veg kitchen and the food is delicious. Went back for the dal baati twice.", "veg food"],
+    ["Great that the restaurant is pure veg. We hosted my daughter's birthday here without any worry about the menu.", "veg events family"],
+    ["If you want pure veg food near Nahargarh, this is the place.", "veg location"],
+    ["Pure veg dinner on the rooftop with the pool next to you. Lovely evening.", "veg pool food"],
+    ["Rare to find a pure veg hotel with a rooftop pool. Loved both.", "veg pool"],
+    ["Pure vegetarian and a very hygienic kitchen. You can taste the freshness.", "veg clean food"],
+    ["Pure veg hai, khana bhi bahut tasty. Family ke saath perfect jagah.", "veg food family"],
+    ["Shuddh shakahari hotel, Amer ke paas. Thali zaroor try karein.", "veg food location"],
+    ["My grandparents only eat vegetarian food, and here they didn't have to worry about anything.", "veg family"],
+    ["The pure veg food at our function was a hit with all the guests.", "veg events food"],
+    ["Being a pure veg property, it was our first choice for the Amer trip. Glad we picked it.", "veg"],
     ["Rooms are big and very clean. Woke up to the hills right outside the window. Slept really well.", "rooms clean"],
     ["Stayed in the suite room for two nights. Lots of space, comfy bed, AC worked perfectly.", "rooms"],
     ["We took the luxury room with the balcony. Morning tea there with the Aravali view was the best part of the trip.", "rooms"],
@@ -165,6 +194,16 @@ export const BANK = {
     ["Value for money hotel. Amer fort ke paas, saaf suthra aur shaant.", "value location clean"],
   ],
   4: [
+    ["Pure veg hotel, good for vegetarian families. Rooms are decent.", "veg family rooms"],
+    ["Good pure veg food. Housekeeping kept the room tidy.", "veg food clean rooms"],
+    ["Liked that it's pure veg. Food was tasty, service a little slow at peak time.", "veg food"],
+    ["The pure veg kitchen is the main reason we chose it. Overall a good stay.", "veg"],
+    ["Only pure veg option we found near Amer. Food was good.", "veg food location"],
+    ["Vegetarian kitchen and peaceful nights. Did the job for us.", "veg food"],
+    ["Pure veg and well kept. Would come again with the kids.", "veg clean family"],
+    ["Nice veg thali at Haldi. Comfortable room.", "veg food rooms"],
+    ["Pure veg ka option is area mein mushkil hai, yahan mil gaya. Accha stay raha.", "veg location"],
+    ["Ideal if you only eat veg. Liked sitting up on the terrace after dinner.", "veg pool"],
     ["Good stay overall. Rooms were clean and the staff was polite.", "rooms staff clean"],
     ["Nice hotel near Amer. Food was tasty, dinner service was a bit slow on a busy night but fine.", "food location"],
     ["Comfortable room and good food. Would come again.", "rooms food"],
@@ -259,6 +298,16 @@ export const PARTS = {
       "Totally worth it.",
     ],
     topic: {
+      veg: [
+        "Loved that the whole kitchen is pure veg.",
+        "Pure veg food, and really tasty.",
+        "Great to find a pure vegetarian hotel near Amer.",
+        "Being pure veg made it perfect for our family.",
+        "The only pure veg hotel around here, and the food shows why.",
+        "As vegetarians we felt completely at home.",
+        "Pure veg kitchen, fresh and full of flavour.",
+        "Every dish was pure veg and delicious.",
+      ],
       rooms: [
         "Room was big and spotless.",
         "Rooms are clean and the beds are really comfortable.",
@@ -349,6 +398,7 @@ export const PARTS = {
       "Liked this place.",
     ],
     topic: {
+      veg: ["Pure veg, which we liked.", "Good option for vegetarians.", "Pure veg food was good.", "Liked the pure veg kitchen."],
       rooms: ["Room was clean and comfortable.", "Rooms are good, nothing fancy but well kept.", "Decent room with a nice hill view.", "Beds were comfortable.", "Room was a good size."],
       food: ["Food was tasty.", "Liked the thali at Haldi.", "Food was good, portions were fair.", "Dinner was good.", "The dal baati was nice."],
       pool: ["Rooftop pool is nice.", "The rooftop is a good place to sit in the evening.", "Kids enjoyed the pool.", "Liked the view from the rooftop."],

@@ -13,6 +13,7 @@ const SEEN_KEY = "tasey-seen";
 const DONE_KEY = "tasey-done";
 
 const ICONS = {
+  veg: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6 2.4-.5 4.9-2 5.9-3"/>',
   rooms: '<path d="M3 19v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7"/><path d="M5 10V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3"/><path d="M3 16h18"/><path d="M12 5v5"/>',
   food: '<path d="M4 3v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3"/><path d="M7 3v18"/><path d="M20 15V3a4 4 0 0 0-4 4v6a2 2 0 0 0 2 2h2zm0 0v6"/>',
   pool: '<path d="M2 8c1.7 1.3 3.3 1.3 5 0s3.3-1.3 5 0 3.3 1.3 5 0 3.3-1.3 5 0"/><path d="M2 13c1.7 1.3 3.3 1.3 5 0s3.3-1.3 5 0 3.3 1.3 5 0 3.3-1.3 5 0"/><path d="M2 18c1.7 1.3 3.3 1.3 5 0s3.3-1.3 5 0 3.3 1.3 5 0 3.3-1.3 5 0"/>',
@@ -125,9 +126,10 @@ function renderTiles() {
   TOPICS.forEach(({ key, label }) => {
     const b = document.createElement("button");
     b.type = "button";
-    b.className = "tile";
+    b.className = key === "veg" ? "tile wide" : "tile";
     b.setAttribute("aria-pressed", "false");
-    b.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[key]}</svg><span>${label}</span>`;
+    const note = key === "veg" ? "<small>Our kitchen is 100% vegetarian</small>" : "";
+    b.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[key]}</svg><span>${label}${note}</span>`;
     b.addEventListener("click", () => {
       const on = !state.topics.includes(key);
       state.topics = on ? [...state.topics, key] : state.topics.filter((t) => t !== key);

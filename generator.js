@@ -23,6 +23,11 @@ export function compose(stars, topics = []) {
   const usable = topics.filter((t) => parts.topic[t]);
   const general = Object.keys(parts.topic).filter((t) => !NICHE.includes(t));
   const pool = shuffle(usable.length ? usable : general);
+  // Pure veg is the hotel's main highlight: bring it up often when it fits.
+  if ((!usable.length || usable.includes("food")) && Math.random() < 0.2) {
+    if (pool.includes("veg")) pool.splice(pool.indexOf("veg"), 1);
+    pool.unshift("veg");
+  }
   const count = Math.min(pool.length, 1 + rand(3));
   const lines = pool.slice(0, count).map((t) => pick(parts.topic[t]));
 
@@ -84,7 +89,12 @@ export function suggest(stars, topics = [], seen = new Set(), count = 5) {
     return true;
   };
 
-  for (const r of shuffle(candidates).slice(0, 2)) {
+  let picks = shuffle(candidates);
+  if ((!topics.length || topics.includes("food")) && Math.random() < 0.35) {
+    const veg = picks.find((r) => r.tags.includes("veg"));
+    if (veg) picks = [veg, ...picks.filter((r) => !r.tags.includes("veg"))];
+  }
+  for (const r of picks.slice(0, 2)) {
     let tries = 0;
     while (!add(voice(decorate(stars, r.text)), r.id) && ++tries < 10);
     if (tries === 10) add(r.text, r.id);
