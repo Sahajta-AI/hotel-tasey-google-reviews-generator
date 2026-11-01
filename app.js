@@ -34,7 +34,7 @@ const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 const svgStar = (on = true) => `<svg viewBox="0 0 24 24" class="${on ? "" : "off"}" aria-hidden="true"><use href="#star"/></svg>`;
 const buzz = () => navigator.vibrate?.(8);
 
-const state = { stars: 0, topics: [], ideas: [], picked: -1, ideasFor: "", issues: [], screen: "rate" };
+const state = { stars: 0, visit: "", topics: [], ideas: [], picked: -1, ideasFor: "", issues: [], screen: "rate" };
 
 // ---------- Storage (both optional; the page works without them) ----------
 
@@ -131,6 +131,7 @@ function renderTiles() {
     b.type = "button";
     const note = TILE_NOTES[key] ? `<small>${TILE_NOTES[key]}</small>` : "";
     b.className = note ? "tile wide" : "tile";
+    b.dataset.key = key;
     b.setAttribute("aria-pressed", "false");
     b.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[key]}</svg><span>${label}${note}</span>`;
     b.addEventListener("click", () => {
@@ -145,16 +146,39 @@ function renderTiles() {
   updateLikeButton();
 }
 function updateLikeButton() {
-  $("#to-pick").textContent = state.topics.length ? "See review ideas" : "Skip and see ideas";
+  const btn = $("#to-pick");
+  btn.disabled = !state.visit;
+  btn.textContent = !state.visit
+    ? "Choose stay or meal above"
+    : state.topics.length ? "See review ideas" : "Skip and see ideas";
 }
+
+// Stayed or came to eat. Diners don't see the Rooms topic, and their review
+// ideas never talk about rooms or staying over.
+function setVisit(visit) {
+  state.visit = visit;
+  buzz();
+  $$(".visit button").forEach((b) => b.setAttribute("aria-checked", String(b.dataset.visit === visit)));
+  const rooms = $('.tile[data-key="rooms"]');
+  rooms.hidden = visit === "dine";
+  if (rooms.hidden && state.topics.includes("rooms")) {
+    state.topics = state.topics.filter((t) => t !== "rooms");
+    rooms.setAttribute("aria-pressed", "false");
+  }
+  // Keep the two-column grid even: an odd last tile takes the full row.
+  const small = $$(".tile:not(.wide)").filter((t) => !t.hidden);
+  small.forEach((t, i) => t.classList.toggle("fill", small.length % 2 === 1 && i === small.length - 1));
+  updateLikeButton();
+}
+$$(".visit button").forEach((b) => b.addEventListener("click", () => setVisit(b.dataset.visit)));
 $("#to-pick").addEventListener("click", () => show("pick"));
 
 // ---------- 3. Ideas ----------
 
-const ideasKey = () => `${state.stars}|${[...state.topics].sort().join(",")}`;
+const ideasKey = () => `${state.stars}|${state.visit}|${[...state.topics].sort().join(",")}`;
 
 function refreshIdeas() {
-  state.ideas = suggest(state.stars, state.topics, readSeen());
+  state.ideas = suggest(state.stars, state.topics, readSeen(), 5, state.visit);
   rememberSeen(state.ideas.map((i) => i.id));
   state.ideasFor = ideasKey();
   state.picked = -1;
@@ -278,7 +302,7 @@ function setThanks(kind) {
   const review = kind === "review";
   $("#thanks-title").textContent = review ? "Thank you" : "Thank you for telling us";
   $("#thanks-text").textContent = review
-    ? "Your review helps other travellers find The Tasey. We hope to welcome you back soon."
+    ? "Your review helps others find The Tasey. We hope to welcome you back soon."
     : "The manager will look into it and get back to you soon.";
   $("#thanks-actions").hidden = !review;
 }

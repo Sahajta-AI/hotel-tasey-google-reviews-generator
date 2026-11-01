@@ -44,5 +44,21 @@ for (const s of [5, 4]) {
   console.log(`${s} stars, 500 guests: ${posted.size} different texts, ${repeats} repeats`);
 }
 
+// Guests who only came to eat must never get lines about rooms or staying over.
+const STAY = /\b(stay(ed|ing|s)?|rooms?|nights|(one|two|a|3) nights?|check-?in|checkout|housekeeping|slept|woke|beds?|suite|balcony|mattress|washroom|bathroom|linen|towels?|lift)\b/i;
+for (const s of [5, 4]) {
+  const posted = new Map();
+  for (let g = 0; g < 500; g++) {
+    for (const idea of suggest(s, [], new Set(), 5, "dine")) {
+      if (STAY.test(idea.text)) { console.log("Stay wording shown to a diner:", idea.text); problems++; }
+    }
+    const ideas = suggest(s, [], new Set(), 5, "dine");
+    const t = ideas[Math.floor(Math.random() * ideas.length)].text.toLowerCase().replace(/[.!]$/, "");
+    posted.set(t, (posted.get(t) || 0) + 1);
+  }
+  const repeats = [...posted.values()].filter((n) => n > 1).reduce((a, n) => a + n - 1, 0);
+  console.log(`${s} stars, 500 diners: ${posted.size} different texts, ${repeats} repeats`);
+}
+
 console.log(problems ? `${problems} problem(s)` : "No problems found");
 process.exit(problems ? 1 : 0);

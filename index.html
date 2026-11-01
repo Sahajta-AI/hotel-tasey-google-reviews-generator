@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Review The Tasey Hotel</title>
-  <meta name="description" content="Rate your stay at The Tasey Hotel, Amer, Jaipur, and post a review on Google in a few taps.">
+  <meta name="description" content="Rate your stay or meal at The Tasey Hotel, Amer, Jaipur, and post a review on Google in a few taps.">
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#011A51">
   <link rel="icon" href="logo.png">
@@ -52,9 +52,9 @@
         </div>
       </div>
       <div class="sheet">
-        <p class="eyebrow">Thank you for staying with us</p>
-        <h1 tabindex="-1">How was your stay?</h1>
-        <p class="lede">Your rating helps other travellers find us.</p>
+        <p class="eyebrow">Thank you for visiting us</p>
+        <h1 tabindex="-1">How was your visit?</h1>
+        <p class="lede">Stayed with us or came to eat, your rating helps others find us.</p>
         <div class="stars" role="radiogroup" aria-label="Your rating"></div>
         <p class="star-label" aria-live="polite"></p>
         <p class="credit">Takes under a minute</p>
@@ -65,8 +65,18 @@
     <section class="screen" data-screen="like" hidden>
       <div class="content">
         <p class="eyebrow rated"></p>
-        <h2 tabindex="-1">What stood out?</h2>
-        <p class="lede">Choose as many as you like. We'll suggest reviews around them.</p>
+        <h2 tabindex="-1">Tell us about your visit</h2>
+        <div class="visit" role="radiogroup" aria-label="Your visit">
+          <button type="button" role="radio" aria-checked="false" data-visit="stay">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7"/><path d="M5 10V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3"/><path d="M3 16h18"/></svg>
+            I stayed here
+          </button>
+          <button type="button" role="radio" aria-checked="false" data-visit="dine">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3"/><path d="M7 3v18"/><path d="M20 15V3a4 4 0 0 0-4 4v6a2 2 0 0 0 2 2h2zm0 0v6"/></svg>
+            I came to eat
+          </button>
+        </div>
+        <p class="section-label">What stood out? <span>Optional, choose any</span></p>
         <div class="tiles"></div>
       </div>
       <div class="cta-bar">
@@ -140,7 +150,7 @@
           <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29"/><path d="M20 33l8 8 16-17"/></svg>
         </div>
         <h2 tabindex="-1" id="thanks-title">Thank you</h2>
-        <p class="lede" id="thanks-text">Your review helps other travellers find The Tasey. We hope to welcome you back soon.</p>
+        <p class="lede" id="thanks-text">Your review helps others find The Tasey. We hope to welcome you back soon.</p>
         <div class="thanks-actions" id="thanks-actions">
           <p class="small-note">Didn't paste on Google?</p>
           <button type="button" class="btn btn-ghost" id="copy-again">Copy my review again</button>

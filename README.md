@@ -4,7 +4,7 @@ A one-page site that helps guests post a Google review for The Tasey Hotel, Amer
 
 Guest flow:
 
-QR code → tap stars → pick what stood out (optional) → pick 1 of 5 review ideas → "Your review is ready" screen: edit the text, read the 3 Google steps → "Copy review & open Google" → Google review box opens → guest taps stars, pastes, posts → back on our page: thank-you screen.
+QR code → tap stars → "I stayed here" or "I came to eat" → pick what stood out (optional) → pick 1 of 5 review ideas → "Your review is ready" screen: edit the text, read the 3 Google steps → "Copy review & open Google" → Google review box opens → guest taps stars, pastes, posts → back on our page: thank-you screen.
 
 Google does not let any website fill in its review box, so the guest always pastes the text. The "ready" screen shows the 3 steps before Google opens, so guests know what to do there.
 
@@ -18,7 +18,7 @@ No server, no database and no API keys. Everything runs in the guest's browser.
 | --- | --- |
 | `index.html`, `style.css`, `app.js` | The review page: one screen per step |
 | `img/facade.jpg` | The hotel lit up at night (the main photo on thetaseyhotel.com), used on the first screen and the poster |
-| `reviews.js` | All review text: 167 five-star and 81 four-star reviews written by hand (35 about the pure veg kitchen, 21 about Jain food). Reviews talk about what the hotel offers; nearby sights only appear as landmarks, never as activities, plus openers, topic lines and closers |
+| `reviews.js` | All review text: 187 five-star and 89 four-star reviews written by hand (28 by people who only came to eat) (35 about the pure veg kitchen, 21 about Jain food). Reviews talk about what the hotel offers; nearby sights only appear as landmarks, never as activities, plus openers, topic lines and closers |
 | `generator.js` | Picks 5 ideas for each guest: 2 hand-written ones and 3 new ones built from the parts |
 | `poster.html` | Printable A5 poster with the QR code for reception and rooms |
 | `scripts/check-reviews.mjs` | Checks the text for AI-sounding words and near copies, and counts repeats over 500 test guests |
@@ -77,3 +77,11 @@ Jain food (no onion, no garlic, no root vegetables) is available.
 - "Jain food" is the second topic, full width, under "Pure veg food".
 - Reviews that tell a personal Jain story ("We are Jain and they prepared our meals...") only show when the guest picks "Jain food". A guest who did not eat Jain food should not post that.
 - Other guests sometimes see a short note such as "Pure veg kitchen, and Jain food is available too."
+
+## Guests and diners
+
+Many people only come to eat. The home screen says "How was your visit?", and the next screen asks "I stayed here" or "I came to eat".
+
+- "I came to eat" hides the Rooms topic and filters out every line about rooms or staying over. About 95% of ideas for diners are about the food or the rooftop cafe.
+- Reviews written by diners ("Only came to eat, and it was worth it") never show to guests who stayed.
+- `npm run check` tests 1,000 diners and fails if any idea mentions rooms or staying.

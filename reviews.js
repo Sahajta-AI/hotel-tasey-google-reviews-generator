@@ -21,6 +21,10 @@
 // This is the hotel's main highlight. Never mention meat, fish or eggs.
 // Jain food (no onion, no garlic, no root vegetables) is also available.
 // Personal Jain lines only show when the guest picks "Jain food".
+//
+// Many people only come to eat. Reviews tagged "dine" are written by them
+// and only show to guests who pick "Came to eat". For those guests, any line
+// about rooms or staying the night is filtered out (see generator.js).
 
 export const TOPICS = [
   { key: "veg", label: "Pure veg food" },
@@ -39,6 +43,26 @@ export const TOPICS = [
 
 export const BANK = {
   5: [
+    ["Came here just for dinner and the food was excellent. Pure veg and full of flavour.", "dine food veg"],
+    ["Had lunch at Haldi on our way back from Amer fort. Thali was fresh and filling.", "dine food location"],
+    ["Only came to eat, and it was worth it. Dal baati churma was the best.", "dine food"],
+    ["Great pure veg restaurant on the Delhi-Jaipur highway. Clean, quick and tasty.", "dine veg food clean location"],
+    ["Family dinner at the rooftop was lovely. Kids loved the view of the pool.", "dine food pool family"],
+    ["We come here to eat whenever we're on this side of Jaipur. Never disappoints.", "dine food"],
+    ["Rooftop cafe has a great feel in the evening. Good food and good music.", "dine pool food"],
+    ["Stopped for lunch with friends. Service was quick and every dish was tasty.", "dine food staff"],
+    ["Best veg food around Amer. Tandoori rotis were soft and hot.", "dine veg food"],
+    ["Ordered the Rajasthani thali and paneer. Everything was fresh and well cooked.", "dine food"],
+    ["Lovely place for a family lunch. Pure veg, which my parents really appreciated.", "dine veg family food"],
+    ["Celebrated a birthday dinner here. They set up our table nicely and the food was great.", "dine events food staff family"],
+    ["Clean restaurant, polite staff and reasonable prices.", "dine clean staff value"],
+    ["Came for Jain food with my family and they made it just right.", "dine jain food family"],
+    ["Evening chai and snacks on the rooftop with the hills around. Very relaxing.", "dine pool views food"],
+    ["Pure veg and very tasty. Will come back to eat again.", "dine veg food"],
+    ["Ate at Haldi twice in one week. That says enough.", "dine food"],
+    ["Good portions, fair prices, very tasty food.", "dine food value"],
+    ["Haldi mein khana khaya, bahut swadisht tha. Pure veg bhi hai.", "dine food veg"],
+    ["Rooftop pe dinner kiya, view aur khana dono badhiya.", "dine pool food views"],
     ["We are Jain and they prepared our meals without onion, garlic or root vegetables. Didn't have to explain twice.", "jain veg food staff"],
     ["Jain food available here, which is very hard to find near Amer. Thank you to the kitchen team.", "jain veg food"],
     ["My parents eat only Jain food and the staff took care of every meal. The pure veg kitchen made us comfortable.", "jain veg family staff"],
@@ -208,6 +232,14 @@ export const BANK = {
     ["Value for money hotel. Amer fort ke paas, saaf suthra aur shaant.", "value location clean"],
   ],
   4: [
+    ["Came for lunch. Food was tasty, service a bit slow.", "dine food"],
+    ["Good pure veg restaurant. Prices are fair.", "dine veg value"],
+    ["Liked eating up on the terrace. Decent menu.", "dine pool food"],
+    ["Stopped here to eat on the highway. Clean place and decent food.", "dine food clean location"],
+    ["Thali was good. Would come again for dinner.", "dine food"],
+    ["Decent veg menu and polite waiters.", "dine veg staff"],
+    ["Family lunch went well. Kids liked the place.", "dine family food"],
+    ["Khana accha tha, pure veg. Service thoda slow.", "dine food veg"],
     ["Good Jain food options. Rooms are decent.", "jain rooms"],
     ["They made Jain food for us, which helped a lot. Overall good stay.", "jain"],
     ["Jain food available and a pure veg kitchen. Comfortable stay.", "jain veg"],
@@ -396,6 +428,16 @@ export const PARTS = {
       clean: ["Everything was very clean.", "Hygiene is very well maintained.", "Washroom was spotless."],
       family: ["Good place to come with family.", "Our parents and kids were both comfortable.", "Very family friendly."],
     },
+    // Used only for guests who came to eat.
+    dineOpen: [
+      "Came here for dinner.",
+      "Had lunch here with family.",
+      "Stopped by to eat on our way to Jaipur.",
+      "Came here just for the food.",
+      "Visited the restaurant with friends.",
+      "Had dinner on the rooftop.",
+    ],
+    dineClose: ["Will come back to eat again.", "Must try if you're near Amer.", "Great place to eat."],
     close: [
       "Highly recommended.",
       "Will definitely come back.",
@@ -438,6 +480,8 @@ export const PARTS = {
       clean: ["Place was clean.", "Rooms and washroom were clean.", "Housekeeping was regular."],
       family: ["Good for families.", "Family was comfortable.", "Kids were happy."],
     },
+    dineOpen: ["Came here for lunch.", "Stopped by to eat.", "Had dinner here.", "Visited the restaurant once.", "Came for dinner with family.", "Had a quick lunch here.", "Went with friends for dinner."],
+    dineClose: ["Would eat here again.", "Decent place to eat.", "Fine for a quick meal.", "Good stop for food.", "Worth trying once."],
     close: [
       "A few small things could be better but overall happy.",
       "Would stay again.",
