@@ -5,7 +5,7 @@ import { BANK, PARTS } from "./reviews.js";
 const rand = (n) => Math.floor(Math.random() * n);
 const TRIP_OPENER = /^(stayed|visited|stopped|went|came|our first)/i;
 // Only true for some guests, so used only when the guest picks them.
-const NICHE = ["events", "safari"];
+const NICHE = ["events", "safari", "jain"];
 const pick = (arr) => arr[rand(arr.length)];
 
 export function shuffle(list) {

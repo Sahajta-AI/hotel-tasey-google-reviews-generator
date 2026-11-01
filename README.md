@@ -18,7 +18,7 @@ No server, no database and no API keys. Everything runs in the guest's browser.
 | --- | --- |
 | `index.html`, `style.css`, `app.js` | The review page: one screen per step |
 | `img/facade.jpg` | The hotel lit up at night (the main photo on thetaseyhotel.com), used on the first screen and the poster |
-| `reviews.js` | All review text: 159 five-star and 80 four-star reviews written by hand (35 about the pure veg kitchen), plus openers, topic lines and closers |
+| `reviews.js` | All review text: 176 five-star and 86 four-star reviews written by hand (35 about the pure veg kitchen, 21 about Jain food), plus openers, topic lines and closers |
 | `generator.js` | Picks 5 ideas for each guest: 2 hand-written ones and 3 new ones built from the parts |
 | `poster.html` | Printable A5 poster with the QR code for reception and rooms |
 | `scripts/check-reviews.mjs` | Checks the text for AI-sounding words and near copies, and counts repeats over 500 test guests |
@@ -69,3 +69,11 @@ The kitchen is pure vegetarian, and no other hotel or restaurant nearby is. It i
 - "Pure veg food" is the first topic on the "What stood out?" screen, full width.
 - When a guest picks no topic, or picks Food, about 1 in 3 ideas mention pure veg, and 9 in 10 guests see at least one. It is not in every idea, because many reviews with the same point look staged to Google.
 - Review text never mentions meat, fish or eggs.
+
+## Jain food
+
+Jain food (no onion, no garlic, no root vegetables) is available.
+
+- "Jain food" is the second topic, full width, under "Pure veg food".
+- Reviews that tell a personal Jain story ("We are Jain and they prepared our meals...") only show when the guest picks "Jain food". A guest who did not eat Jain food should not post that.
+- Other guests sometimes see a short note such as "Pure veg kitchen, and Jain food is available too."

@@ -16,9 +16,12 @@
 //
 // The kitchen is pure vegetarian, and no other hotel or restaurant nearby is.
 // This is the hotel's main highlight. Never mention meat, fish or eggs.
+// Jain food (no onion, no garlic, no root vegetables) is also available.
+// Personal Jain lines only show when the guest picks "Jain food".
 
 export const TOPICS = [
   { key: "veg", label: "Pure veg food" },
+  { key: "jain", label: "Jain food" },
   { key: "rooms", label: "Rooms" },
   { key: "food", label: "Food" },
   { key: "pool", label: "Rooftop pool" },
@@ -33,6 +36,23 @@ export const TOPICS = [
 
 export const BANK = {
   5: [
+    ["We are Jain and they prepared our meals without onion, garlic or root vegetables. Didn't have to explain twice.", "jain veg food staff"],
+    ["Jain food available here, which is very hard to find near Amer. Thank you to the kitchen team.", "jain veg food"],
+    ["My parents eat only Jain food and the staff took care of every meal. The pure veg kitchen made us comfortable.", "jain veg family staff"],
+    ["Jain thali was simple and tasty. Great that a hotel here understands Jain food.", "jain veg food"],
+    ["Travelling with Jain family members is usually a struggle. Here it was easy.", "jain family"],
+    ["Pure veg plus Jain food. Perfect for our family.", "jain veg family"],
+    ["Asked for Jain food at breakfast and dinner, both were made fresh without any fuss.", "jain food staff"],
+    ["Best part for us was the Jain food. No onion, no garlic, and still full of taste.", "jain food"],
+    ["As a Jain family we could stay and eat here without any worry.", "jain family"],
+    ["Jain food bhi milta hai yahan. Family ke liye bahut convenient.", "jain family"],
+    ["Jain khana ekdum sahi banaya. Bahut accha laga.", "jain food"],
+    ["The kitchen understood Jain food properly, which is rare around here.", "jain food location"],
+    ["Came with my grandmother who eats only Jain food. The kitchen looked after her really well.", "jain family food"],
+    ["Pure veg kitchen with Jain options. Ideal for Jain travellers visiting Amer.", "jain veg location"],
+    ["Every Jain meal came out hot and freshly made. Very happy.", "jain food"],
+    ["Pure veg kitchen, and they serve Jain food as well. Rare in this area.", "veg food"],
+    ["Everything is pure veg and Jain food is available too. Good to know for families like ours.", "veg family"],
     ["Pure veg hotel, which is hard to find around Amer. We could order anything without asking twice.", "veg food location"],
     ["Finally a pure vegetarian place near Amer fort. My parents were so relieved.", "veg family location"],
     ["The whole kitchen is pure veg, so my mother ate here happily at every meal. Food was really tasty too.", "veg food family"],
@@ -194,6 +214,12 @@ export const BANK = {
     ["Value for money hotel. Amer fort ke paas, saaf suthra aur shaant.", "value location clean"],
   ],
   4: [
+    ["Good Jain food options. Rooms are decent.", "jain rooms"],
+    ["They made Jain food for us, which helped a lot. Overall good stay.", "jain"],
+    ["Jain food available and a pure veg kitchen. Comfortable stay.", "jain veg"],
+    ["Jain meals were good. Service a bit slow at dinner.", "jain food"],
+    ["Good for Jain families. Meals were simple and fresh.", "jain family food"],
+    ["Jain khana mil gaya, accha laga. Stay theek tha.", "jain"],
     ["Pure veg hotel, good for vegetarian families. Rooms are decent.", "veg family rooms"],
     ["Good pure veg food. Housekeeping kept the room tidy.", "veg food clean rooms"],
     ["Liked that it's pure veg. Food was tasty, service a little slow at peak time.", "veg food"],
@@ -307,6 +333,16 @@ export const PARTS = {
         "As vegetarians we felt completely at home.",
         "Pure veg kitchen, fresh and full of flavour.",
         "Every dish was pure veg and delicious.",
+        "Pure veg kitchen, and Jain food is available too.",
+      ],
+      jain: [
+        "They made Jain food for us without any fuss.",
+        "Jain food is available here, which helped a lot.",
+        "Our Jain meals were made fresh every time.",
+        "Great for Jain families.",
+        "The kitchen understands Jain food well.",
+        "No onion, no garlic, and still very tasty.",
+        "Jain food was a big relief for our family.",
       ],
       rooms: [
         "Room was big and spotless.",
@@ -398,7 +434,8 @@ export const PARTS = {
       "Liked this place.",
     ],
     topic: {
-      veg: ["Pure veg, which we liked.", "Good option for vegetarians.", "Pure veg food was good.", "Liked the pure veg kitchen."],
+      veg: ["Pure veg, which we liked.", "Good option for vegetarians.", "Pure veg food was good.", "Liked the pure veg kitchen.", "Jain food is also available."],
+      jain: ["Jain food was available.", "They made Jain food for us.", "Jain meals were good."],
       rooms: ["Room was clean and comfortable.", "Rooms are good, nothing fancy but well kept.", "Decent room with a nice hill view.", "Beds were comfortable.", "Room was a good size."],
       food: ["Food was tasty.", "Liked the thali at Haldi.", "Food was good, portions were fair.", "Dinner was good.", "The dal baati was nice."],
       pool: ["Rooftop pool is nice.", "The rooftop is a good place to sit in the evening.", "Kids enjoyed the pool.", "Liked the view from the rooftop."],
