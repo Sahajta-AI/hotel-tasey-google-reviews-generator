@@ -54,7 +54,23 @@ npm run check
 
 ## Deploy
 
-Any static host works. On Vercel, import this repository with no build command and no settings. After the first deploy, open `/poster.html` on the live site and print it. The QR code uses the live address by itself. To put a different address in the QR code, type it in the box at the top of the poster page.
+Live address: **https://reviews.thetaseyhotel.com** (Vercel project `tasey-reviews`, team Sahajta AI). The old address https://tasey-reviews.vercel.app also works.
+
+DNS for thetaseyhotel.com is at GoDaddy. The subdomain needs one record:
+
+| Type | Name | Value |
+| --- | --- | --- |
+| CNAME | `reviews` | `8924318ed9e64931.vercel-dns-016.com` |
+
+Check it with:
+
+```bash
+vercel domains verify reviews.thetaseyhotel.com --scope pranamyas-projects-2d0c3256
+```
+
+To deploy a change: `vercel deploy --prod --scope pranamyas-projects-2d0c3256`. The GitHub repo is not connected to Vercel yet, so a push alone does not deploy.
+
+The poster (`/poster.html`) puts https://reviews.thetaseyhotel.com/ in the QR code, wherever the poster page is opened from.
 
 ## Google review rules to keep in mind
 

@@ -107,10 +107,12 @@
   </div>
 
   <script>
-    // The QR points at this site's review page. Use ?url= to point it elsewhere.
+    // The QR always points at the hotel's review address, wherever this page
+    // is opened from. Use ?url= or the box above to point it elsewhere.
+    const REVIEW_URL = "https://reviews.thetaseyhotel.com/";
     const input = document.getElementById("url");
     const fromQuery = new URLSearchParams(location.search).get("url");
-    input.value = fromQuery || new URL("./", location.href).href;
+    input.value = fromQuery || REVIEW_URL;
 
     function draw() {
       const qr = qrcode(0, "M");
