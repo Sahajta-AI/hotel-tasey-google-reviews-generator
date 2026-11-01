@@ -17,13 +17,13 @@
 export const TOPICS = [
   { key: "rooms", label: "Rooms" },
   { key: "food", label: "Food" },
-  { key: "pool", label: "Rooftop & pool" },
+  { key: "pool", label: "Rooftop pool" },
   { key: "staff", label: "Staff" },
   { key: "clean", label: "Cleanliness" },
   { key: "location", label: "Location" },
   { key: "safari", label: "Safari" },
-  { key: "events", label: "Party / event" },
-  { key: "value", label: "Value for money" },
+  { key: "events", label: "Events" },
+  { key: "value", label: "Value" },
   { key: "family", label: "Family trip" },
 ];
 

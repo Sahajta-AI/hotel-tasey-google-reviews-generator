@@ -8,58 +8,166 @@
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#011A51">
   <link rel="icon" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap">
+  <link rel="preload" as="image" href="img/rooftop.jpg">
   <link rel="stylesheet" href="style.css">
   <script type="module" src="app.js"></script>
 </head>
 <body>
-  <header class="brand">
-    <img src="logo.png" alt="" width="52" height="52">
-    <div>
-      <p class="brand-name">The Tasey Hotel</p>
-      <p class="brand-place">Amer, Jaipur</p>
-    </div>
-  </header>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#F0D28C"/>
+        <stop offset="1" stop-color="#B8862F"/>
+      </linearGradient>
+      <symbol id="star" viewBox="0 0 24 24"><path d="M12 2.8l2.75 5.6 6.15.9-4.45 4.34 1.05 6.12L12 16.9l-5.5 2.86 1.05-6.12L3.1 9.3l6.15-.9z"/></symbol>
+    </defs>
+  </svg>
 
-  <main>
-    <section class="card" id="rate">
-      <h1>How was your stay?</h1>
-      <p class="muted">Tap the stars. It takes less than a minute.</p>
-      <div class="stars" role="radiogroup" aria-label="Your rating"></div>
-      <p class="star-label" aria-live="polite"></p>
-    </section>
+  <div class="backdrop" aria-hidden="true"></div>
 
-    <section class="card" id="happy" hidden>
-      <h2>What did you like?</h2>
-      <p class="muted">Optional. Pick any and the ideas below will change.</p>
-      <div class="chips"></div>
+  <div class="app">
+    <header class="topbar" hidden>
+      <button type="button" class="icon-btn" id="back" aria-label="Go back">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <span class="wordmark">The Tasey</span>
+      <span class="step" id="step"></span>
+      <span class="progress" aria-hidden="true"><span id="progress-bar"></span></span>
+    </header>
 
-      <div class="ideas-head">
-        <h2>Pick a review</h2>
-        <button type="button" class="link-btn" id="more">Show new ideas</button>
+    <!-- 1. Rating -->
+    <section class="screen screen-rate" data-screen="rate">
+      <div class="hero">
+        <img src="img/rooftop.jpg" alt="The rooftop pool at The Tasey Hotel" width="1000" height="740">
+        <div class="hero-brand">
+          <img src="logo.png" alt="" class="hero-logo" width="44" height="44">
+          <div>
+            <p class="hero-name">The Tasey Hotel</p>
+            <p class="hero-place">Amer &middot; Jaipur</p>
+          </div>
+        </div>
       </div>
-      <div class="ideas" role="radiogroup" aria-label="Review ideas"></div>
-
-      <label class="editor-label" for="editor">Your review <span class="muted">(change any words you like)</span></label>
-      <textarea id="editor" rows="4" placeholder="Pick an idea above or write your own"></textarea>
+      <div class="sheet">
+        <p class="eyebrow">Thank you for staying with us</p>
+        <h1 tabindex="-1">How was your stay?</h1>
+        <p class="lede">Your rating helps other travellers find us.</p>
+        <div class="stars" role="radiogroup" aria-label="Your rating"></div>
+        <p class="star-label" aria-live="polite"></p>
+        <p class="credit">Takes under a minute</p>
+      </div>
     </section>
 
-    <section class="card" id="sad" hidden>
-      <h2>Sorry we let you down</h2>
-      <p class="muted">Tell us what went wrong. It goes straight to the hotel manager on WhatsApp.</p>
-      <textarea id="feedback" rows="5" placeholder="What happened?"></textarea>
-      <a class="btn btn-whatsapp" id="send-feedback" href="#" target="_blank" rel="noopener">Send to the manager</a>
-      <a class="small-link" id="google-anyway" href="#" target="_blank" rel="noopener">Or post your review on Google</a>
+    <!-- 2. Topics -->
+    <section class="screen" data-screen="like" hidden>
+      <div class="content">
+        <p class="eyebrow rated"></p>
+        <h2 tabindex="-1">What stood out?</h2>
+        <p class="lede">Choose as many as you like. We'll suggest reviews around them.</p>
+        <div class="tiles"></div>
+      </div>
+      <div class="cta-bar">
+        <button type="button" class="btn btn-primary" id="to-pick">See review ideas</button>
+      </div>
     </section>
 
-    <p class="footer">Made by <a href="https://sahajta.com" target="_blank" rel="noopener">Sahajta AI</a></p>
-  </main>
+    <!-- 3. Ideas -->
+    <section class="screen" data-screen="pick" hidden>
+      <div class="content">
+        <p class="eyebrow">Review ideas</p>
+        <h2 tabindex="-1">Pick the one that sounds like you</h2>
+        <p class="lede">You can change any words on the next step.</p>
+        <div class="ideas" role="radiogroup" aria-label="Review ideas"></div>
+        <button type="button" class="text-btn" id="more">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>
+          Show different ideas
+        </button>
+      </div>
+      <div class="cta-bar">
+        <button type="button" class="btn btn-primary" id="to-ready" disabled>Use this review</button>
+      </div>
+    </section>
 
-  <div class="action-bar" id="action-bar" hidden>
-    <button type="button" class="btn btn-google" id="post">
-      <svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg>
-      Copy &amp; post on Google
-    </button>
-    <a class="small-link" id="own" href="#" target="_blank" rel="noopener">Write my own on Google</a>
+    <!-- 4. Ready: edit, then copy and open Google -->
+    <section class="screen" data-screen="ready" hidden>
+      <div class="content">
+        <p class="eyebrow">Almost done</p>
+        <h2 tabindex="-1">Your review is ready</h2>
+        <p class="lede">Tap the text to change anything. A detail only you know makes it even better.</p>
+
+        <div class="review-card">
+          <div class="review-head">
+            <span class="avatar" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 19.5c1.2-3.3 4-5 7-5s5.8 1.7 7 5"/></svg>
+            </span>
+            <div>
+              <p class="review-who">Your review</p>
+              <span class="mini-stars" id="ready-stars"></span>
+            </div>
+          </div>
+          <label class="visually-hidden" for="editor">Your review text</label>
+          <textarea id="editor" rows="3" spellcheck="true"></textarea>
+          <p class="review-hint">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>
+            Tap to edit
+          </p>
+        </div>
+
+        <div class="howto">
+          <p class="howto-title">Next, on Google</p>
+          <ol>
+            <li><span class="num">1</span><span>Tap <strong id="howto-stars">5 stars</strong></span></li>
+            <li><span class="num">2</span><span>Press and hold the box, then tap <strong>Paste</strong></span></li>
+            <li><span class="num">3</span><span>Tap <strong>Post</strong></span></li>
+          </ol>
+        </div>
+      </div>
+      <div class="cta-bar">
+        <button type="button" class="btn btn-primary btn-google" id="post">
+          <span class="g-mark" aria-hidden="true"><svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.7-.4-3.9z"/></svg></span>
+          <span class="btn-label">Copy review &amp; open Google</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 5. Thank you -->
+    <section class="screen screen-thanks" data-screen="thanks" hidden>
+      <div class="content center">
+        <div class="seal" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="29"/><path d="M20 33l8 8 16-17"/></svg>
+        </div>
+        <h2 tabindex="-1" id="thanks-title">Thank you</h2>
+        <p class="lede" id="thanks-text">Your review helps other travellers find The Tasey. We hope to welcome you back soon.</p>
+        <div class="thanks-actions" id="thanks-actions">
+          <p class="small-note">Didn't paste on Google?</p>
+          <button type="button" class="btn btn-ghost" id="copy-again">Copy my review again</button>
+          <a class="text-link" id="google-again" href="#">Open Google again</a>
+        </div>
+        <button type="button" class="text-link start-over" id="start-over">Start over</button>
+      </div>
+    </section>
+
+    <!-- Low rating: private feedback, Google stays available -->
+    <section class="screen" data-screen="sorry" hidden>
+      <div class="content">
+        <p class="eyebrow rated"></p>
+        <h2 tabindex="-1">We're sorry to hear that</h2>
+        <p class="lede">Tell our manager what went wrong. Every message is read, and we will set it right.</p>
+        <div class="issue-chips"></div>
+        <label class="visually-hidden" for="feedback">What went wrong</label>
+        <textarea id="feedback" class="field" rows="4" placeholder="What happened? (optional)"></textarea>
+      </div>
+      <div class="cta-bar">
+        <a class="btn btn-primary" id="send-feedback" href="#" target="_blank" rel="noopener">
+          <svg class="wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2.1 1.3 2.4 1.4.3.2.5.1.6 0l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.4z"/></svg>
+          Send to the manager
+        </a>
+        <a class="text-link" id="google-anyway" href="#" target="_blank" rel="noopener">Or post your review on Google</a>
+      </div>
+    </section>
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>

@@ -4,7 +4,9 @@ A one-page site that helps guests post a Google review for The Tasey Hotel, Amer
 
 Guest flow:
 
-QR code → review page → tap stars → pick topics (optional) → pick 1 of 5 review ideas → edit if wanted → "Copy & post on Google" → Google review box opens → guest pastes, taps stars, posts.
+QR code → tap stars → pick what stood out (optional) → pick 1 of 5 review ideas → "Your review is ready" screen: edit the text, read the 3 Google steps → "Copy review & open Google" → Google review box opens → guest taps stars, pastes, posts → back on our page: thank-you screen.
+
+Google does not let any website fill in its review box, so the guest always pastes the text. The "ready" screen shows the 3 steps before Google opens, so guests know what to do there.
 
 Guests who give 1 to 3 stars see a feedback box. The message goes to the hotel on WhatsApp (+91 70738 73670). The "Post your review on Google" link stays on that screen too.
 
@@ -14,7 +16,8 @@ No server, no database and no API keys. Everything runs in the guest's browser.
 
 | File | What it does |
 | --- | --- |
-| `index.html`, `style.css`, `app.js` | The review page |
+| `index.html`, `style.css`, `app.js` | The review page: one screen per step |
+| `img/rooftop.jpg` | Real photo of the hotel's rooftop pool, used on the first screen and the poster |
 | `reviews.js` | All review text: 134 five-star and 70 four-star reviews written by hand, plus openers, topic lines and closers |
 | `generator.js` | Picks 5 ideas for each guest: 2 hand-written ones and 3 new ones built from the parts |
 | `poster.html` | Printable A5 poster with the QR code for reception and rooms |
