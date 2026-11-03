@@ -8,6 +8,8 @@ QR code → tap stars → "I stayed here" or "I came to eat" → pick what stood
 
 Google does not let any website fill in its review box, so the guest always pastes the text. The "ready" screen shows the 3 steps before Google opens, so guests know what to do there.
 
+On iPhones and iPads, the "ready" screen shows a 4th step first: "If Google asks, sign in with your Gmail." Safari on iPhone is usually not signed in to Google, so Google opens its sign-in page before the review box. Without this step, guests think the page is broken. Android phones are already signed in, so they do not see this step.
+
 Guests who give 1 to 3 stars see a feedback box. The message goes to the hotel on WhatsApp (+91 70738 73670). The "Post your review on Google" link stays on that screen too.
 
 No server, no database and no API keys. Everything runs in the guest's browser.

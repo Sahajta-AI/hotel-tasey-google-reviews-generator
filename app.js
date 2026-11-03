@@ -350,6 +350,15 @@ $("#send-feedback").addEventListener("click", (e) => {
 
 $("#google-again").href = GOOGLE_REVIEW_URL;
 $("#google-anyway").href = GOOGLE_REVIEW_URL;
+
+// Safari on iPhone is usually not signed in to Google, so Google shows a sign-in
+// page before the review box. Make it the first step, so it doesn't look broken.
+// (iPads report themselves as Macs; the touch check catches them.)
+if (/iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) {
+  $("#signin-step").hidden = false;
+  $$(".howto .num").forEach((n, i) => (n.textContent = i + 1));
+}
+
 renderStars();
 renderTiles();
 renderIssues();
